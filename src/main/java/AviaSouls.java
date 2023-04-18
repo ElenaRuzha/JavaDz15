@@ -6,8 +6,9 @@ public class AviaSouls {
 
     /**
      * Вспомогательный метод для имитации добавления элемента в массив
+     *
      * @param current Массив, в который мы хотим добавить элемент
-     * @param ticket Элемент, который мы хотим добавить
+     * @param ticket  Элемент, который мы хотим добавить
      * @return Возвращает новый массив, который выглядит как тот что мы передали,
      * но с добавлением нового элемента в конец
      */
@@ -22,6 +23,7 @@ public class AviaSouls {
 
     /**
      * Метод добавления билета в менеджер
+     *
      * @param ticket Добавляемый билет
      */
     public void add(Ticket ticket) {
@@ -34,8 +36,9 @@ public class AviaSouls {
 
     /**
      * Метод поиска билетов по маршруту
+     *
      * @param from Откуда вылетаем
-     * @param to Куда прилетаем
+     * @param to   Куда прилетаем
      * @return Массив из подходящих билетов
      */
     public Ticket[] search(String from, String to) {
@@ -47,8 +50,10 @@ public class AviaSouls {
                 }
             }
         }
+        Arrays.sort(tickets);
         return result;
     }
+
     public Ticket[] searchAndSortBy(String from, String to, Comparator<Ticket> comparator) {
         TicketTimeComparator timeComparator = new TicketTimeComparator();
         Ticket[] result = new Ticket[0]; // массив для ответа
@@ -56,10 +61,10 @@ public class AviaSouls {
             if (ticket.getFrom().equals(from)) { // совпадает аэропорт вылета
                 if (ticket.getTo().equals(to)) { // совпадает аэропорт прилёта
                     result = addToArray(result, ticket); // добавляем его в массив ответа
-                    Arrays.sort(tickets, timeComparator);
                 }
             }
         }
+        Arrays.sort(tickets, timeComparator);
         return result;
     }
 }
